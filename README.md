@@ -25,16 +25,16 @@ V1.0        | 2018-1-24       | 初始版本
 
 ## 安装说明：
 
-1. 下载安装包 https://raw.githubusercontent.com/MatoApps/CommentTranslator/master/CT/ct.zip
+1. 下载 https://raw.githubusercontent.com/MatoApps/CommentTranslator/master/CT/ct.zip
 
-2. 解压并双击 setup.exe 安装
+2. 解压，运行CommentTranslator.exe即可
 
 
 ## 运行环境
 
 * Microsoft Windows 7 x64 及以上
 
-* 包含.Net 4.6.1运行时
+* 包含.Net 4.5运行时
 
 
 
