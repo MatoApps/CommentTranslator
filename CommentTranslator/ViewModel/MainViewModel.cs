@@ -36,7 +36,7 @@ namespace CommentTranslator.ViewModel
 
         }
 
-        private async void MainViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void MainViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(Translation))
             {
@@ -44,21 +44,27 @@ namespace CommentTranslator.ViewModel
                 LogHelper.LogInfo(Translation);
             }
 
-            else if (e.PropertyName == nameof(CurrentContent))
+        }
 
+
+        private async void DoTranslate(string CurrentContent)
+        {
+            Explaniation = string.Empty;
+            Translation = string.Empty;
+            if (CurrentContent.Contains("ÑîÏþÓî"))
             {
-                Explaniation = string.Empty;
-                Translation = string.Empty;
-                if (CurrentContent.Contains("ÑîÏþÓî"))
-                {
-                    Window sh = new Window();
-                    sh.Topmost = true;
-                    sh.Background = new SolidColorBrush(Color.FromArgb(255, 47, 58, 65));
-                    var img = new Image();
-                    img.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/sh.jpg"));
-                    sh.Content = img;
-                    sh.ShowDialog();
-                }
+                Window sh = new Window();
+                sh.Topmost = true;
+                sh.Background = new SolidColorBrush(Color.FromArgb(255, 47, 58, 65));
+                var img = new Image();
+                img.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/sh.jpg"));
+                sh.Content = img;
+                sh.ShowDialog();
+
+            }
+            else
+            {
+
 
                 var result = await YouDaoApiHelper.GetWordsAsync(CurrentContent);
 
@@ -74,34 +80,29 @@ namespace CommentTranslator.ViewModel
                     Translation = result.YouDaoTranslation.FirstTranslation[0];
                 }
                 SearchResultDetail = result.ResultDetail;
-
             }
         }
+
 
         public RelayCommand<string> SearchCommand { get; }
         private void Search_OnExecute(string s)
         {
-            if (string.IsNullOrEmpty(s))
+            var txt = s.Trim(' ');
+            if (string.IsNullOrEmpty(txt))
             {
                 return;
             }
-            CurrentContent = s;
-        }
-
-        private string _currentContent;
-
-        public string CurrentContent
-        {
-            get { return _currentContent; }
-            set
+            if (txt==_lastContent)
             {
-                if (_currentContent != value)
-                {
-                    _currentContent = value;
-                    RaisePropertyChanged();
-                }
+                return;
             }
+            DoTranslate(txt);
+            _lastContent = txt;
         }
+
+        private string _lastContent;
+
+       
 
 
         private string _searchResultDetail;
@@ -163,7 +164,7 @@ namespace CommentTranslator.ViewModel
             Clipboard.SetDataObject(data, false);
         }
 
-
+        
 
     }
 }

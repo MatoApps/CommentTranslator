@@ -76,6 +76,12 @@ namespace CommentTranslator
             ShowAbout();
         }
 
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            Environment.Exit(0);
+        }
+
         public void ShowAbout()
         {
             var aboutWindow = new AboutWindow();
