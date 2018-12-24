@@ -164,5 +164,8 @@
     <Resource Include="Resources\Icon1.ico" />
     <Resource Include="Resources\NotificationIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\sh.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

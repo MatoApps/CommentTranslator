@@ -31,6 +31,13 @@ namespace CommentTranslator
             getWordCore = new GetWordCore();
             getWordCore.OnTextChanged += GetWordCore_OnTextChanged;
             InitializeComponent();
+            double x = SystemParameters.WorkArea.Width - this.Width;//得到屏幕工作区域宽度
+            double y = SystemParameters.WorkArea.Height - this.Height;//得到屏幕工作区域高度
+
+            this.Top = y;
+            this.Left = x;
+
+            this.isEnableCheckBox.IsChecked = true;
         }
 
         private void GetWordCore_OnTextChanged(object sender, string e)
@@ -59,8 +66,8 @@ namespace CommentTranslator
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
-            (this.DataContext as MainViewModel).SearchCommand.Execute(SearchingTextBox.Text);
+
+            //(this.DataContext as MainViewModel).SearchCommand.Execute(SearchingTextBox.Text);
 
         }
 

@@ -6,6 +6,9 @@ using System.ComponentModel;
 using System.IO;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace CommentTranslator.ViewModel
 {
@@ -33,34 +36,72 @@ namespace CommentTranslator.ViewModel
 
         }
 
-        private void MainViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private async void MainViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName==nameof(Translation))
+            if (e.PropertyName == nameof(Translation))
             {
                 CopyToClipboard(Translation);
                 LogHelper.LogInfo(Translation);
             }
+
+            else if (e.PropertyName == nameof(CurrentContent))
+
+            {
+                Explaniation = string.Empty;
+                Translation = string.Empty;
+                if (CurrentContent.Contains("ÑîÏþÓî"))
+                {
+                    Window sh = new Window();
+                    sh.Topmost = true;
+                    sh.Background = new SolidColorBrush(Color.FromArgb(255, 47, 58, 65));
+                    var img = new Image();
+                    img.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/sh.jpg"));
+                    sh.Content = img;
+                    sh.ShowDialog();
+                }
+
+                var result = await YouDaoApiHelper.GetWordsAsync(CurrentContent);
+
+                if (result.YouDaoTranslation.BasicTranslation != null)
+                {
+
+
+                    Explaniation = result.YouDaoTranslation.BasicTranslation.Phonetic + "\r\n" +
+                                   string.Join("\r\n", result.YouDaoTranslation.BasicTranslation.Explains);
+                }
+                if (result.YouDaoTranslation.FirstTranslation.Count > 0)
+                {
+                    Translation = result.YouDaoTranslation.FirstTranslation[0];
+                }
+                SearchResultDetail = result.ResultDetail;
+
+            }
         }
 
         public RelayCommand<string> SearchCommand { get; }
-        private async void Search_OnExecute(string s)
+        private void Search_OnExecute(string s)
         {
-            var result = await YouDaoApiHelper.GetWordsAsync(s);
-
-            if (result.YouDaoTranslation.BasicTranslation != null)
+            if (string.IsNullOrEmpty(s))
             {
-
-
-                Explaniation = result.YouDaoTranslation.BasicTranslation.Phonetic + "\r\n" +
-                               string.Join("\r\n", result.YouDaoTranslation.BasicTranslation.Explains);
+                return;
             }
-            if (result.YouDaoTranslation.FirstTranslation.Count > 0)
-            {
-                Translation = result.YouDaoTranslation.FirstTranslation[0];
-            }
-            SearchResultDetail = result.ResultDetail;
+            CurrentContent = s;
         }
 
+        private string _currentContent;
+
+        public string CurrentContent
+        {
+            get { return _currentContent; }
+            set
+            {
+                if (_currentContent != value)
+                {
+                    _currentContent = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
 
 
         private string _searchResultDetail;
