@@ -1,0 +1,40 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    d1p1:Ignorable="d"
+                    xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
+
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:converter1="clr-namespace:CommentTranslator.Converter"
+                    xmlns:manager="clr-namespace:CommentTranslator.Manager">
+
+    <converter1:Bool2VisibilityConverter x:Key="Bool2VisibilityConverter"></converter1:Bool2VisibilityConverter>
+    <converter1:Bool2StringConverter x:Key="Bool2StringConverter"></converter1:Bool2StringConverter>
+    <converter1:JobStatus2ColorConverter x:Key="JobStatus2ColorConverter"></converter1:JobStatus2ColorConverter>
+    <converter1:JobStatus2StringConverter x:Key="JobStatus2StringConverter"></converter1:JobStatus2StringConverter>
+    <converter1:Date2StringConverter x:Key="Date2StringConverter"></converter1:Date2StringConverter>
+    <converter1:DayOfWeek2StringConverter x:Key="DayOfWeek2StringConverter"></converter1:DayOfWeek2StringConverter>
+    <converter1:Enum2StringConverter x:Key="Enum2StringConverter"></converter1:Enum2StringConverter>
+    <converter1:ScheduleType2StringConverter x:Key="ScheduleType2StringConverter"></converter1:ScheduleType2StringConverter>
+    <converter1:True2FalseConverter x:Key="True2FalseConverter"></converter1:True2FalseConverter>
+    <converter1:JobStatus2BoolConverter x:Key="JobStatus2BoolConverter"></converter1:JobStatus2BoolConverter>
+    <converter1:ScheduleMode2BoolConverter x:Key="ScheduleMode2BoolConverter"></converter1:ScheduleMode2BoolConverter>
+    <converter1:ScheduleMode2StringConverter x:Key="ScheduleMode2StringConverter"></converter1:ScheduleMode2StringConverter>
+
+    <system:Double x:Key="LargeFontSize">22</system:Double>
+
+    <system:Double x:Key="SmailFontSize">12</system:Double>
+    <vm:ViewModelLocator x:Key="Locator"
+                                 d:IsDataSource="True"
+                                 xmlns:vm="clr-namespace:CommentTranslator.ViewModel" />
+    <manager:DataManager x:Key="DataManager"
+                                 d:IsDataSource="True"
+                                  />
+
+    <Style TargetType="Label">
+        <Setter Property="FontSize"
+                Value="{StaticResource SmailFontSize}"></Setter>
+    </Style>
+
+
+</ResourceDictionary>
