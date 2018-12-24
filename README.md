@@ -4,7 +4,8 @@
 
 这是独立开发者的一个开源项目, 希望得到您的意见反馈，请将Bugs汇报至我的邮箱
 
- ![avatar](https://raw.githubusercontent.com/MatoApps/CommentTranslator/master/CT/screenshot.png)
+ ![avatar](https://github.com/MatoApps/CommentTranslator/blob/master/CT/screenshot.gif)
+ 
  
 ## 更新内容：
 
