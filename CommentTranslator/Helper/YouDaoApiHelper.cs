@@ -16,7 +16,7 @@ namespace CommentTranslator.Helper
     {
         const string _appKey = "75766d8fc97f34a3";
         const string _from = "auto";
-        const string _to = "zhs";
+        const string _to = "auto";
         const string _appSecret = "rFkTqsDws1bCoETcxSL7afG33emwJdr5";
 
         public static async Task<YouDaoTranslationData> GetWordsAsync(string queryText)

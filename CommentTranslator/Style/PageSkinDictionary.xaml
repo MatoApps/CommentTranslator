@@ -10,16 +10,9 @@
 
     <converter1:Bool2VisibilityConverter x:Key="Bool2VisibilityConverter"></converter1:Bool2VisibilityConverter>
     <converter1:Bool2StringConverter x:Key="Bool2StringConverter"></converter1:Bool2StringConverter>
-    <converter1:JobStatus2ColorConverter x:Key="JobStatus2ColorConverter"></converter1:JobStatus2ColorConverter>
-    <converter1:JobStatus2StringConverter x:Key="JobStatus2StringConverter"></converter1:JobStatus2StringConverter>
     <converter1:Date2StringConverter x:Key="Date2StringConverter"></converter1:Date2StringConverter>
-    <converter1:DayOfWeek2StringConverter x:Key="DayOfWeek2StringConverter"></converter1:DayOfWeek2StringConverter>
     <converter1:Enum2StringConverter x:Key="Enum2StringConverter"></converter1:Enum2StringConverter>
-    <converter1:ScheduleType2StringConverter x:Key="ScheduleType2StringConverter"></converter1:ScheduleType2StringConverter>
     <converter1:True2FalseConverter x:Key="True2FalseConverter"></converter1:True2FalseConverter>
-    <converter1:JobStatus2BoolConverter x:Key="JobStatus2BoolConverter"></converter1:JobStatus2BoolConverter>
-    <converter1:ScheduleMode2BoolConverter x:Key="ScheduleMode2BoolConverter"></converter1:ScheduleMode2BoolConverter>
-    <converter1:ScheduleMode2StringConverter x:Key="ScheduleMode2StringConverter"></converter1:ScheduleMode2StringConverter>
 
     <system:Double x:Key="LargeFontSize">22</system:Double>
 
@@ -27,9 +20,6 @@
     <vm:ViewModelLocator x:Key="Locator"
                                  d:IsDataSource="True"
                                  xmlns:vm="clr-namespace:CommentTranslator.ViewModel" />
-    <manager:DataManager x:Key="DataManager"
-                                 d:IsDataSource="True"
-                                  />
 
     <Style TargetType="Label">
         <Setter Property="FontSize"

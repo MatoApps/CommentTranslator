@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CommentTranslator.View;
+using CommentTranslator.ViewModel;
 using Core;
 using MahApps.Metro.Controls;
 
@@ -34,18 +35,44 @@ namespace CommentTranslator
 
         private void GetWordCore_OnTextChanged(object sender, string e)
         {
-            MessageBox.Show(e);
+            this.CurrentText.Text = e;
+            (this.DataContext as MainViewModel).SearchCommand.Execute(e);
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            getWordCore.Enable(true);
+            var isEnabled = (bool)(sender as CheckBox).IsChecked;
+            getWordCore.Enable(isEnabled);
 
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             getWordCore.Load();
+        }
+
+        private void MetroWindow_Unloaded(object sender, RoutedEventArgs e)
+        {
+            getWordCore.Unload();
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+            (this.DataContext as MainViewModel).SearchCommand.Execute(SearchingTextBox.Text);
+
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            ShowAbout();
+        }
+
+        public void ShowAbout()
+        {
+            var aboutWindow = new AboutWindow();
+            aboutWindow.ShowDialog();
         }
     }
 }

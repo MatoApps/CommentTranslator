@@ -22,28 +22,14 @@ namespace CommentTranslator.View
     /// </summary>
     public partial class AboutWindow : MetroWindow
     {
-
-
         private void Hyperlink_OnClick(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/jevonsflash/CommentTranslator");
+            Process.Start("https://github.com/MatoApps/CommentTranslator");
         }
 
-
-
-        private GetWordCore _getWordCore;
         public AboutWindow()
         {
             InitializeComponent();
-            _getWordCore = new GetWordCore();
-
-            _getWordCore.OnTextChanged += _getWordCore_OnTextChanged;
-        }
-
-        private void _getWordCore_OnTextChanged(object sender, string e)
-        {
-            MessageBox.Show(e);
-            Debug.WriteLine(e);
         }
 
         private void OpenFolder_OnClick(object sender, RoutedEventArgs e)
@@ -52,15 +38,5 @@ namespace CommentTranslator.View
             Process.Start(outputsPath);
         }
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            _getWordCore.Enable(true);
-        }
-
-        private void IndexPage_OnLoaded(object sender, RoutedEventArgs e)
-        {
-            _getWordCore.Load();
-
-        }
     }
 }

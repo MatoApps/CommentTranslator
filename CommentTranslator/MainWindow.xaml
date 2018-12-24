@@ -10,11 +10,54 @@
                       xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
                       xmlns:view="clr-namespace:CommentTranslator.View"
                       mc:Ignorable="d"
+                      DataContext="{Binding Source={StaticResource Locator},Path=Main}"
                       Loaded="Window_Loaded"
-                      Title="MainWindow" Height="450" Width="800">
+                      Topmost="True"
+                      Unloaded="MetroWindow_Unloaded"
+                      Title="CT" Height="250" Width="320" WindowStartupLocation="CenterScreen" IsMinButtonEnabled="False" IsMaxRestoreButtonEnabled="False" ShowMaxRestoreButton="False" ShowMinButton="False" ShowSystemMenuOnRightClick="False" ShowTitleBar="False">
+    <controls:MetroWindow.RightWindowCommands>
+        <controls:WindowCommands>
+            <Button Content="关于" Click="ButtonBase_OnClick"></Button>
+        </controls:WindowCommands>
+    </controls:MetroWindow.RightWindowCommands>
     <Grid>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Checked="CheckBox_Checked" Margin="231,189,0,0" VerticalAlignment="Top"/>
+        <StackPanel>
 
+            <CheckBox Content="CheckBox" 
+                      HorizontalAlignment="Left" 
+                      Checked="CheckBox_Checked" 
+                      VerticalAlignment="Top"/>
+            <TextBlock Name="CurrentText"></TextBlock>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBox Name="SearchingTextBox" Width="120"  ></TextBox>
+                <Button Grid.Row="1" Content="搜索" Click="Button_Click" Height="26" HorizontalAlignment="Center" Margin="0 10 0 0" Width="120"/>
+                <Grid Grid.Row="2" Margin="0 10 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="单词信息："></TextBlock>
+                    <TextBlock Grid.Column="1" Text="{Binding Explaniation}" TextWrapping="Wrap" 
+                               HorizontalAlignment="Stretch"/>
+                </Grid>
+                <Grid Grid.Row="3" Margin="0 10 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="详细信息："></TextBlock>
+                    <TextBox Grid.Column="1" Text="{Binding Translation}" TextWrapping="Wrap" 
+                               HorizontalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                </Grid>
+            </Grid>
+
+        </StackPanel>
     </Grid>
 </controls:MetroWindow>
 
